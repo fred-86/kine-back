@@ -1,0 +1,26 @@
+- date
+- time
+- topic
+- comment
+- notification
+- reason
+- start_datetime
+- end_datetime
+- recurrence
+- is_working_hours
+- days_of_weeks
+- lastName
+- firstName
+- email
+- password
+- phone
+- address
+- city
+- zipCode role
+- content
+- status
+- worded
+- email
+- password
+- phone
+- role

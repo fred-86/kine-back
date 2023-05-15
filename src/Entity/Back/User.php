@@ -3,14 +3,14 @@
 namespace App\Entity\Back;
 
 use App\Repository\Back\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -20,19 +20,20 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180,unique=true)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $password;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=120,options={"default":"admin"})
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $role;
+    private $password;
 
     /**
      * @ORM\Column(type="datetime")
@@ -54,13 +55,19 @@ class User
      */
     private $appointments;
 
-  
+    /**
+     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="user")
+     */
+    private $availabilities;
+
+
 
     public function __construct()
     {
         $this->patients = new ArrayCollection();
         $this->appointments = new ArrayCollection();
-        
+        $this->availabilities = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -80,7 +87,47 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -92,18 +139,28 @@ class User
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
     {
-        return $this->role;
+        return null;
     }
 
-    public function setRole(string $role): self
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        $this->role = $role;
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
+
+    
     public function getCreatedAT(): ?\DateTimeInterface
     {
         return $this->createdAT;
@@ -188,5 +245,33 @@ class User
         return $this;
     }
 
-   
+    /**
+     * @return Collection<int, Availability>
+     */
+    public function getAvailabilities(): Collection
+    {
+        return $this->availabilities;
+    }
+
+    public function addAvailability(Availability $availability): self
+    {
+        if (!$this->availabilities->contains($availability)) {
+            $this->availabilities[] = $availability;
+            $availability->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvailability(Availability $availability): self
+    {
+        if ($this->availabilities->removeElement($availability)) {
+            // set the owning side to null (unless already changed)
+            if ($availability->getUser() === $this) {
+                $availability->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }

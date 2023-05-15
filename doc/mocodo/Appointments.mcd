@@ -1,0 +1,24 @@
+:
+STATUS: worded
+:
+:
+
+:
+MUST HAVE, 1N APPOINTMENT, 11 STATUS
+:
+:
+
+TO, 11 USER(Admin), 1N APPOINTMENT
+APPOINTMENT: date, time, topic, comment, notification
+BETONG TO, 1N APPOINTMENT, 1N PATIENT
+:
+
+USER(Admin): email,password,phone,role
+MAY HAVE,1N PATIENT, 11 USER(Admin)
+PATIENT: lastName, firstName, email , password, phone, address, city, zipCode role
+MAY BE ,1N PATIENT, 0N REVIEW
+
+CAN, 1N Availability, N1 USER(Admin)
+Availability:reason, start_datetime, end_datetime , recurrence, is_working_hours, days_of_weeks
+:
+REVIEW: content, status

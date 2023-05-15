@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <details><summary><span class='relation'>APPOINTMENT</span> (
+    <span title='primary_key (None)' class='primary'>date</span>,
+    <span title='normal_attribute (None)' class='normal'>time</span>,
+    <span title='normal_attribute (None)' class='normal'>topic</span>,
+    <span title='normal_attribute (None)' class='normal'>comment</span>,
+    <span title='normal_attribute (None)' class='normal'>notification</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>date</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>APPOINTMENT</i>.</li>
+    <li>Les champs <i>time</i>, <i>topic</i>, <i>comment</i> et <i>notification</i> étaient déjà de simples attributs de l'entité <i>APPOINTMENT</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>Availability</span> (
+    <span title='primary_key (None)' class='primary'>reason</span>,
+    <span title='normal_attribute (None)' class='normal'>start_datetime</span>,
+    <span title='normal_attribute (None)' class='normal'>end_datetime</span>,
+    <span title='normal_attribute (None)' class='normal'>recurrence</span>,
+    <span title='normal_attribute (None)' class='normal'>is_working_hours</span>,
+    <span title='normal_attribute (None)' class='normal'>days_of_weeks</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>reason</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>Availability</i>.</li>
+    <li>Les champs <i>start_datetime</i>, <i>end_datetime</i>, <i>recurrence</i>, <i>is_working_hours</i> et <i>days_of_weeks</i> étaient déjà de simples attributs de l'entité <i>Availability</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>BETONG TO</span> (
+    <span title='primary_foreign_key (APPOINTMENT)' class='foreign primary'>#date</span>,
+    <span title='primary_foreign_key (PATIENT)' class='foreign primary'>#lastName</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>date</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>APPOINTMENT</i>.</li>
+    <li>Le champ <i>lastName</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>PATIENT</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>CAN</span> (
+    <span title='primary_foreign_key (Availability)' class='foreign primary'>#reason</span>,
+    <span title='primary_foreign_key (USER(Admin))' class='foreign primary'>#email</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>reason</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>Availability</i>.</li>
+    <li>Le champ <i>email</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>USER(Admin)</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>MAY BE</span> (
+    <span title='primary_foreign_key (PATIENT)' class='foreign primary'>#lastName</span>,
+    <span title='primary_foreign_key (REVIEW)' class='foreign primary'>#content</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>lastName</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>PATIENT</i>.</li>
+    <li>Le champ <i>content</i> fait partie de la clé primaire de la table. C'est une clé étrangère qui a migré directement à partir de l'entité <i>REVIEW</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>PATIENT</span> (
+    <span title='primary_key (None)' class='primary'>lastName</span>,
+    <span title='normal_attribute (None)' class='normal'>firstName</span>,
+    <span title='normal_attribute (None)' class='normal'>email</span>,
+    <span title='normal_attribute (None)' class='normal'>password</span>,
+    <span title='normal_attribute (None)' class='normal'>phone</span>,
+    <span title='normal_attribute (None)' class='normal'>address</span>,
+    <span title='normal_attribute (None)' class='normal'>city</span>,
+    <span title='normal_attribute (None)' class='normal'>zipCode role</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>lastName</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>PATIENT</i>.</li>
+    <li>Les champs <i>firstName</i>, <i>email</i>, <i>password</i>, <i>phone</i>, <i>address</i>, <i>city</i> et <i>zipCode role</i> étaient déjà de simples attributs de l'entité <i>PATIENT</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>REVIEW</span> (
+    <span title='primary_key (None)' class='primary'>content</span>,
+    <span title='normal_attribute (None)' class='normal'>status</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>content</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>REVIEW</i>.</li>
+    <li>Le champ <i>status</i> était déjà un simple attribut de l'entité <i>REVIEW</i>.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>STATUS</span> (
+    <span title='primary_key (None)' class='primary'>worded</span>,
+    <span title='foreign_key (APPOINTMENT)' class='foreign'>#date</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>worded</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>STATUS</i>.</li>
+    <li>Le champ <i>date</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>MUST HAVE</i> à partir de l'entité <i>APPOINTMENT</i> en perdant son caractère identifiant.</li>
+  </ul></details>
+</div>
+
+<div>
+  <details><summary><span class='relation'>USER(Admin)</span> (
+    <span title='primary_key (None)' class='primary'>email</span>,
+    <span title='normal_attribute (None)' class='normal'>password</span>,
+    <span title='normal_attribute (None)' class='normal'>phone</span>,
+    <span title='normal_attribute (None)' class='normal'>role</span>,
+    <span title='foreign_key (APPOINTMENT)' class='foreign'>#date</span>,
+    <span title='foreign_key (PATIENT)' class='foreign'>#lastName</span>
+  )</summary>
+  <ul>
+    <li>Le champ <i>email</i> constitue la clé primaire de la table. C'était déjà un identifiant de l'entité <i>USER(Admin)</i>.</li>
+    <li>Les champs <i>password</i>, <i>phone</i> et <i>role</i> étaient déjà de simples attributs de l'entité <i>USER(Admin)</i>.</li>
+    <li>Le champ <i>date</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>TO</i> à partir de l'entité <i>APPOINTMENT</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>lastName</i> est une clé étrangère. Il a migré par l'association de dépendance fonctionnelle <i>MAY HAVE</i> à partir de l'entité <i>PATIENT</i> en perdant son caractère identifiant.</li>
+  </ul></details>
+</div>
+
+</div>
+</body>
+</html>

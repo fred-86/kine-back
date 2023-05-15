@@ -1,0 +1,30 @@
+%%mocodo
+:::
+STATUS: worded, #date->APPOINTMENT->date
+:::::
+
+
+
+:::
+APPOINTMENT: date, time, topic, comment, notification
+:
+BETONG TO: #date->APPOINTMENT->date, _#lastName->PATIENT->lastName
+:::
+
+
+:
+USER(Admin): email, password, phone, role, #date->APPOINTMENT->date, #lastName->PATIENT->lastName
+:::
+PATIENT: lastName, firstName, email, password, phone, address, city, zipCode role
+:
+MAY BE: #lastName->PATIENT->lastName, _#content->REVIEW->content
+:
+
+
+:
+CAN: #reason->Availability->reason, _#email->USER(Admin)->email
+:
+Availability: reason, start_datetime, end_datetime, recurrence, is_working_hours, days_of_weeks
+:::
+REVIEW: content, status
+:

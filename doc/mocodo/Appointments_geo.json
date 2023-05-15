@@ -1,0 +1,47 @@
+{
+  "width": 446,
+  "height": 608,
+  "cx": [
+    [ "STATUS", 174 ],
+    [ "MUST HAVE", 174 ],
+    [ "TO", 56 ],
+    [ "APPOINTMENT", 174 ],
+    [ "BETONG TO", 300 ],
+    [ "USER(Admin)", 56 ],
+    [ "MAY HAVE", 174 ],
+    [ "PATIENT", 300 ],
+    [ "MAY BE", 406 ],
+    [ "CAN", 56 ],
+    [ "Availability", 174 ],
+    [ "REVIEW", 406 ]
+  ],
+  "cy": [
+    [ "STATUS", 34 ],
+    [ "MUST HAVE", 109 ],
+    [ "TO", 218 ],
+    [ "APPOINTMENT", 218 ],
+    [ "BETONG TO", 218 ],
+    [ "USER(Admin)", 353 ],
+    [ "MAY HAVE", 353 ],
+    [ "PATIENT", 353 ],
+    [ "MAY BE", 353 ],
+    [ "CAN", 531 ],
+    [ "Availability", 531 ],
+    [ "REVIEW", 531 ]
+  ],
+  "shift": [
+    [ "MUST HAVE,APPOINTMENT,0", 0 ],
+    [ "MUST HAVE,STATUS,0", 0 ],
+    [ "TO,USER(Admin),0", 0 ],
+    [ "TO,APPOINTMENT,0", 0 ],
+    [ "BETONG TO,APPOINTMENT,0", 0 ],
+    [ "BETONG TO,PATIENT,0", 0 ],
+    [ "MAY HAVE,PATIENT,0", 0 ],
+    [ "MAY HAVE,USER(Admin),0", 0 ],
+    [ "MAY BE,PATIENT,0", 0 ],
+    [ "MAY BE,REVIEW,0", 0 ],
+    [ "CAN,Availability,0", 0 ],
+    [ "CAN,USER(Admin),0", 0 ]
+  ],
+  "ratio": []
+}

@@ -70,7 +70,7 @@
 |updated_at|DateTime|Null,ON UPDATE|date of review update|
 |published_at|DateTime|Null,ON UPDATE|date of review publication|
 
-## Entity Availability 
+## Entity Availability
 
 | Champ|Type|Specifities|Description|
 |:------:|:-----:|:------:|:-----:|
