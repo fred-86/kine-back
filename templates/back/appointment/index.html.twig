@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appointment index{% endblock %}
+
+{% block body %}
+    <h1>Appointment index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Topic</th>
+                <th>Comment</th>
+                <th>Notification</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.date ? appointment.date|date('Y-m-d') : '' }}</td>
+                <td>{{ appointment.time ? appointment.time|date('H:i:s') : '' }}</td>
+                <td>{{ appointment.topic ? appointment.topic|join(', ') : '' }}</td>
+                <td>{{ appointment.comment }}</td>
+                <td>{{ appointment.notification ? 'Yes' : 'No' }}</td>
+                <td>{{ appointment.createdAt ? appointment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ appointment.updatedAt ? appointment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_back_appointment_show', {'id': appointment.id}) }}">show</a>
+                    <a href="{{ path('app_back_appointment_edit', {'id': appointment.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_appointment_new') }}">Create new</a>
+{% endblock %}
