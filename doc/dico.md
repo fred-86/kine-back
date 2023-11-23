@@ -8,13 +8,11 @@
 |id|Int|Primary Key, Not Null, Unsigned, Auto_Increment| patient id|
 |lastName|VarChar(128)|Not Null|lastname of patient|
 |firstName|VarChar(128)|Not Null|firstname of patient|
-|email|VarChar(180)|Not Null, unique|email of patient|
-|password|VarChar(255)|Not Null|password of patient|
+|gender|VarChar(20)|Not Null|gender of patient|
 |phone|VarChar(15)|Not Null|phone of patient|
 |address|VarChar(255)|Not Null|address of patient|
 |city|VarChar(64)|Not Null|city of patient|
 |zipCode|VarChar(7)|Not Null|city of patient|
-|role|VarChar(120)|Not Null Default patient|role (DC2Type:json)|
 |user|entity|Not Null, foreign key |user of appointments|
 |created_at|DateTime|Not Null,ON UPDATE|date of patient creation|
 |updated_at|DateTime|Null,ON UPDATE|date of patient update|

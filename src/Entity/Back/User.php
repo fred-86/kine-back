@@ -3,6 +3,8 @@
 namespace App\Entity\Back;
 
 use App\Repository\Back\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -67,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->patients = new ArrayCollection();
         $this->appointments = new ArrayCollection();
         $this->availabilities = new ArrayCollection();
+        $this->createdAT = new \DateTime();
 
     }
 
@@ -160,7 +163,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
 
-    
     public function getCreatedAT(): ?\DateTimeInterface
     {
         return $this->createdAT;
