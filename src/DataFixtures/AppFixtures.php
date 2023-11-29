@@ -7,8 +7,9 @@ use App\Entity\Back\User;
 
 use App\Entity\Back\Patient;
 use Doctrine\DBAL\Connection;
-use Doctrine\Persistence\ObjectManager;
+use App\Entity\Back\Pratictioner;
 
+use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -57,7 +58,7 @@ class AppFixtures extends Fixture
             // Disabling foreign_key constraints
             $this->connection->executeStatement('SET foreign_key_checks = 0');
            
-            $test = $this->connection->executeStatement('DELETE FROM user');
+            $test = $this->connection->executeStatement('TRUNCATE TABLE user');
             // $this->connection->executeStatement('DELETE TABLE patient');
     
             // Valider la transaction
@@ -91,9 +92,22 @@ class AppFixtures extends Fixture
 
 
 
-        $tabUserList = [];
+        //Praticien
+
+        $pratictioner = new  Pratictioner();
+        $pratictioner->setFirstName($faker->firstName());
+        $pratictioner->setLastName($faker->lastName());
+        $pratictioner->setPhone($faker->e164PhoneNumber());
+        $pratictioner->setAddress($faker->streetAddress());
+        $pratictioner->setCity($faker->city());
+        $pratictioner->setZipCode($faker->postcode());
+        $pratictioner->setSubject('Kiné');
+        $pratictioner->setUser($adminManager);
+        $manager->persist($pratictioner);
+
 
         //Users
+        $tabUserList = [];
         for ($i = 1; $i <= self::NB_USER; $i++) {
 
             $user = new User();

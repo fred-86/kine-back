@@ -63,11 +63,12 @@ class Availability
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="availabilities")
-     * @ORM\JoinColumn(nullable=false)
+
+     /**
+     * @ORM\ManyToOne(targetEntity="Pratictioner", inversedBy="availabilities")
+     * @ORM\JoinColumn(name="pratictioner_id", referencedColumnName="id")
      */
-    private $user;
+    private $pratictioner;
 
     public function __construct()
     {
@@ -187,14 +188,14 @@ class Availability
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getPratictioner(): ?Pratictioner
     {
-        return $this->user;
+        return $this->pratictioner;
     }
 
-    public function setUser(?User $user): self
+    public function setPratictioner(?Pratictioner $pratictioner): self
     {
-        $this->user = $user;
+        $this->pratictioner = $pratictioner;
 
         return $this;
     }

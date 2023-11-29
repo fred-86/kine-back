@@ -54,11 +54,6 @@ class Appointment
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="appointments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="appointments")
@@ -71,6 +66,11 @@ class Appointment
      * @ORM\JoinColumn(nullable=false)
      */
     private $patient;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Pratictioner::class, inversedBy="appointment")
+     */
+    private $pratictioner;
 
     public function __construct()
     {
@@ -168,18 +168,6 @@ class Appointment
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getStatus(): ?Status
     {
         return $this->status;
@@ -200,6 +188,18 @@ class Appointment
     public function setPatient(?Patient $patient): self
     {
         $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function getPratictioner(): ?Pratictioner
+    {
+        return $this->pratictioner;
+    }
+
+    public function setPratictioner(?Pratictioner $pratictioner): self
+    {
+        $this->pratictioner = $pratictioner;
 
         return $this;
     }

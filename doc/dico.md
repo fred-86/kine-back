@@ -27,7 +27,7 @@
 |topic |ENUM|Not Null|topic of appoitment (kinésiologie, soins énergétiques, purification de lieux)|
 |comment|LongText| Null|comment of appotment|
 |notification|Boolean| Null default 0|notification if there are appointments available|
-|user|entity|Not Null, foreign key |user of appointments|
+|pratictioner|entity|Not Null, foreign key |the pratictioner's appointment|
 |patient|entity|Not Null, foreign key patient of appointments|
 |status|entity|Not Null, foreign key|status of appointments|
 |created_at|DateTime|Not Null,ON UPDATE|date of user creation|
@@ -51,7 +51,6 @@
 |id|Int|Primary Key, Not Null, Unsigned, Auto_Increment| user id|
 |email|VarChar(180)|Not Null, unique|email of user|
 |password|VarChar(255)|Not Null|password of user|
-|phone|VarChar(15)|Not Null|phone of user|
 |role|VarChar(120)|Not Null Default admin|role (DC2Type:json)|
 |created_at|DateTime|Not Null,ON UPDATE|date of user creation|
 |updated_at|DateTime|Null,ON UPDATE|date of user update|
@@ -80,21 +79,22 @@
 |recurrence_days|array|Not Null|Days of the week affected by the unavailability|
 |is_working_hours|Boolean|Not Null default 1|Indicator to specify whether the unavailability affects the user's normal working hours|
 |days_of_week|array|Not Null|Specific days of the week affected by unavailability|
-|user|entity|Not Null, foreign key |the user's availability|
+|pratictioner|entity|Not Null, foreign key |the pratictioner's availability|
 |created_at|DateTime|Not Null,ON UPDATE|date of review creation|
 |updated_at|DateTime|Null,ON UPDATE|date of review update|
 
 
 
-## Front
 
 ## Entity  Practitioner
 
 | Champ|Type|Specifities|Description|
 |:------:|:-----:|:------:|:-----:|
 |id|Int|Primary Key, Not Null, Unsigned, Auto_Increment| practitioner id|
+|user|entity|Not Null, foreign key |user of pratictioner|
 |lastName|VarChar(128)|Not Null|lastname of Practitioner|
 |firstName|VarChar(128)|Not Null|firstname of Practitioner|
+|subject|VarChar(200)|Not Null|subject(discipline) of Practitioner|
 |phone|VarChar(15)|Not Null|phone of Practitioner|
 |address|VarChar(255)|Not Null|address of Practitioner|
 |city|VarChar(64)|Not Null|city of Practitioner|
@@ -106,3 +106,4 @@
 |updated_at|DateTime|Null,ON UPDATE|date of Practitioner update|
 
 
+## Front

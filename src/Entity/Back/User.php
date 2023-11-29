@@ -2,6 +2,7 @@
 
 namespace App\Entity\Back;
 
+use App\Entity\Back\Pratictioner;
 use App\Repository\Back\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -52,24 +53,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $patients;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="user", orphanRemoval=true)
-     */
-    private $appointments;
+    // /**
+    //  * @ORM\OneToMany(targetEntity=Appointment::class, mappedBy="user", orphanRemoval=true)
+    //  */
+    // private $appointments;
+
+    // /**
+    //  * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="user")
+    //  */
+    // private $availabilities;
 
     /**
-     * @ORM\OneToMany(targetEntity=Availability::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Pratictioner::class, mappedBy="user")
      */
-    private $availabilities;
+    private $pratictioners;
 
 
 
     public function __construct()
     {
         $this->patients = new ArrayCollection();
-        $this->appointments = new ArrayCollection();
-        $this->availabilities = new ArrayCollection();
+        // $this->appointments = new ArrayCollection();
+        // $this->availabilities = new ArrayCollection();
         $this->createdAT = new \DateTime();
+        $this->pratictioners = new ArrayCollection();
 
     }
 
@@ -217,60 +224,90 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // /**
+    //  * @return Collection<int, Appointment>
+    //  */
+    // public function getAppointments(): Collection
+    // {
+    //     return $this->appointments;
+    // }
+
+    // public function addAppointment(Appointment $appointment): self
+    // {
+    //     if (!$this->appointments->contains($appointment)) {
+    //         $this->appointments[] = $appointment;
+    //         $appointment->setUser($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeAppointment(Appointment $appointment): self
+    // {
+    //     if ($this->appointments->removeElement($appointment)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($appointment->getUser() === $this) {
+    //             $appointment->setUser(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
+    // /**
+    //  * @return Collection<int, Availability>
+    //  */
+    // public function getAvailabilities(): Collection
+    // {
+    //     return $this->availabilities;
+    // }
+
+    // public function addAvailability(Availability $availability): self
+    // {
+    //     if (!$this->availabilities->contains($availability)) {
+    //         $this->availabilities[] = $availability;
+    //         $availability->setUser($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeAvailability(Availability $availability): self
+    // {
+    //     if ($this->availabilities->removeElement($availability)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($availability->getUser() === $this) {
+    //             $availability->setUser(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
     /**
-     * @return Collection<int, Appointment>
+     * @return Collection<int, Pratictioner>
      */
-    public function getAppointments(): Collection
+    public function getPratictioners(): Collection
     {
-        return $this->appointments;
+        return $this->pratictioners;
     }
 
-    public function addAppointment(Appointment $appointment): self
+    public function addPratictioner(Pratictioner $pratictioner): self
     {
-        if (!$this->appointments->contains($appointment)) {
-            $this->appointments[] = $appointment;
-            $appointment->setUser($this);
+        if (!$this->pratictioners->contains($pratictioner)) {
+            $this->pratictioners[] = $pratictioner;
+            $pratictioner->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeAppointment(Appointment $appointment): self
+    public function removePratictioner(Pratictioner $pratictioner): self
     {
-        if ($this->appointments->removeElement($appointment)) {
+        if ($this->pratictioners->removeElement($pratictioner)) {
             // set the owning side to null (unless already changed)
-            if ($appointment->getUser() === $this) {
-                $appointment->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Availability>
-     */
-    public function getAvailabilities(): Collection
-    {
-        return $this->availabilities;
-    }
-
-    public function addAvailability(Availability $availability): self
-    {
-        if (!$this->availabilities->contains($availability)) {
-            $this->availabilities[] = $availability;
-            $availability->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAvailability(Availability $availability): self
-    {
-        if ($this->availabilities->removeElement($availability)) {
-            // set the owning side to null (unless already changed)
-            if ($availability->getUser() === $this) {
-                $availability->setUser(null);
+            if ($pratictioner->getUser() === $this) {
+                $pratictioner->setUser(null);
             }
         }
 
