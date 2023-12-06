@@ -2,9 +2,11 @@
 
 namespace App\Entity\Back;
 
-use App\Entity\Back\User;
-use App\Repository\AvailabilityRepository;
+
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Back\Pratictioner;
+use App\Repository\Back\AvailabilityRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AvailabilityRepository::class)
@@ -20,16 +22,19 @@ class Availability
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Assert\NotBlank
      */
     private $reason;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\NotBlank
      */
     private $startTime;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\NotBlank
      */
     private $endTime;
 
@@ -207,6 +212,15 @@ class Availability
 
         return $this;
     }
+    /**
+     * Update the updatedAt field before the update
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
 
     public function getPratictioner(): ?Pratictioner
     {

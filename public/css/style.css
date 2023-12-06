@@ -1,0 +1,138 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Montserrat, Helvetica, sans-serif;
+    background:#f4f4f4;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-wrapper {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    background:#fafafa;
+    box-shadow: inset 0px -1px 0px #c5c5c6;
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-right: 20px;
+}
+.nav-icon span {
+    font-family: Roboto Flex, sans-serif;
+    font-size: 25px;
+    margin-left: 10px;
+    font-weight: 400;
+    color: #333;
+}
+
+.nav-icon img {
+    transform:  rotate(-17deg) translateX(5px);
+}
+
+.btn-hamburger,
+.user-toggler {
+    display: none;
+}
+
+.navlinks-container a {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color:#414141;
+    display: inline-block;
+    position: relative;
+}
+
+.navlinks-container a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    height:1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: #333;
+    transition: transform 0.3s ease-out;
+}
+
+.navlinks-container a:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-login {
+    margin-left: auto;
+}
+
+.sign-btns button {
+    font-family: Roboto Flex, sans-serif;
+    font-size: 16px;
+    min-width: 90px;
+    padding: 10px 5px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border:none;
+}
+
+.sign-btns button:nth-child(2) {
+    border: none;
+    background:#92c3eeb7;
+}
+
+@media (max-width: 900px) {
+    .nav-wrapper {
+        position: relative;
+        padding: 15px 20px;
+    }
+    .nav-icon {
+        order: 2;
+        margin: 0 auto;
+    }
+    .nav-icon span {
+        font-size: 22px;
+    }
+
+    .nav-navlinks {
+        order:1;
+    }
+
+    .navlinks-container {
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        background: #fafafa;
+        top:100%;
+        left: 0;
+        height: 100vh;
+        padding: 15px 50px 15px 20px;
+        border-right: 1px solid #c5c5c6;
+        /* transform: translate(-100%); */
+    }
+
+    .open {
+        transform: translate(0);
+    }
+    .nav-login {
+        order:3;
+    }
+}
+
+img {
+    width: 20px;
+}

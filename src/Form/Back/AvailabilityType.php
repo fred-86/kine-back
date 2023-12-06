@@ -4,10 +4,13 @@ namespace App\Form\Back;
 
 use App\Entity\Back\Availability;
 use App\Entity\Back\Pratictioner;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class AvailabilityType extends AbstractType
 {
@@ -15,17 +18,41 @@ class AvailabilityType extends AbstractType
     {
         $builder
             ->add('reason')
-            ->add('startTime')
-            ->add('endTime')
+            ->add('startTime',DateTimeType::class, [
+                'date_widget' => 'single_text'
+                ])
+            ->add('endTime',DateTimeType::class, [
+                'date_widget' => 'single_text'
+                ])
             ->add('recurrence')
-            ->add('recurrenceDays')
+            ->add('recurrenceDays', ChoiceType::class, [
+                'choices' => [
+                    'Lundi' => 'Lundi',
+                    'Mardi' => 'Mardi',
+                    'Mercredi' => 'Mercredi',
+                    'Jeudi' => 'Jeudi',
+                    'Vendredi' => 'Vendredi',
+                    'Samedi' => 'Samedi',
+                    'Semaine' => 'Semaine'
+                ],
+                'multiple' => true,
+                'expanded' => true,
+            ])
             ->add('isWorkingHours')
-            ->add('daysOfWeeks')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('backgroundColor')
-            ->add('textColor')
-            ->add('borderColor')
+            ->add('daysOfWeeks', ChoiceType::class, [
+                'choices' => [
+                    'Lundi' => 'Lundi',
+                    'Mardi' => 'Mardi',
+                    'Mercredi' => 'Mercredi',
+                    'Jeudi' => 'Jeudi',
+                    'Vendredi' => 'Vendredi',
+                ],
+                'multiple' => true,
+                'expanded' => true,
+            ])
+            ->add('backgroundColor',ColorType::class)
+            ->add('textColor',ColorType::class)
+            ->add('borderColor',ColorType::class)
             ->add('allDay')
             ->add('pratictioner', EntityType::class, [
                 'class' => Pratictioner::class,

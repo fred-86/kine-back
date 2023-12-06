@@ -1,21 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    {# <h1>Hello {{ controller_name }}! ✅</h1>
+    <nav class="nav-wrapper">
+        <a class="nav-icon" aria-label="visit home Page" aria-current"page" href="#">
+             <img src="{{ asset('ressources/icon/logo.png') }}" alt="logo">
+             <span>Kiné</span>
+        </a>
+        <div class="nav-navlinks">
+            <button class="btn btn-hamburger" type="button" aria-label="Toggle naiviagtion" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navlinks-container">
+                <a aria-current="page" href="#">Home</a>
+                <a href="{{ path('app_back_availability_index') }}">Disponibilités</a>
+                <a href="{{ path('app_back_availability_index') }}">Rendez-vous</a>
+                <a href="{{ path('app_back_availability_index') }}">User</a>
+                <a href="{{ path('app_back_availability_index') }}">Praticien</a>
+                <a href="{{ path('app_back_availability_index') }}">Patient</a>
+                <a href="{{ path('app_back_availability_index') }}">Review</a>
+            </div>
+        </div>
+        <div class="nav-login">
+            <a class="user-toggler" aria-label="Sign in Page" href="#">
+                <img src="{{ asset('ressources/icon/utilisateur.png') }}" alt="icon-user">
+            </a>
+            <div class="sign-btns">
+                <button type="button" class="btn btn-sign">Sign In</button>
+                <button type="button" class="btn btn-sign">Sign Up</button>
+            </div>
+        </div>
+    </nav>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/kine/kine-back/src/Controller/Back/MainController.php'|file_link(0) }}">src/Controller/Back/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/kine/kine-back/templates/back/main/index.html.twig'|file_link(0) }}">templates/back/main/index.html.twig</a></code></li>
-    </ul> #}
-    <a href="{{ path('app_back_availability_index') }}">Disponibilités</a>
-</div>
+
+
+
+    <script src="{{ asset('js/main.js') }}"></script>
+
 {% endblock %}

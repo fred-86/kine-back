@@ -79,6 +79,9 @@
 |recurrence_days|array|Not Null|Days of the week affected by the unavailability|
 |is_working_hours|Boolean|Not Null default 1|Indicator to specify whether the unavailability affects the user's normal working hours|
 |days_of_week|array|Not Null|Specific days of the week affected by unavailability|
+|background-color|string|Null|choice of background color for the box |
+|border_color|string|Null|choice of border color for the box |
+|text_color|string|Null|choice of text color for the box |
 |pratictioner|entity|Not Null, foreign key |the pratictioner's availability|
 |created_at|DateTime|Not Null,ON UPDATE|date of review creation|
 |updated_at|DateTime|Null,ON UPDATE|date of review update|

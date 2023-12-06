@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Back\Availability;
-use App\Form\Back\Availability1Type;
+use App\Form\Back\AvailabilityType;
 use App\Repository\Back\AvailabilityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +26,7 @@ class AvailabilityController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $availability = new Availability();
-        $form = $this->createForm(Availability1Type::class, $availability);
+        $form = $this->createForm(AvailabilityType::class, $availability);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class AvailabilityController extends AbstractController
     #[Route('/{id}/edit', name: 'app_back_availability_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Availability $availability, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Availability1Type::class, $availability);
+        $form = $this->createForm(AvailabilityType::class, $availability);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
