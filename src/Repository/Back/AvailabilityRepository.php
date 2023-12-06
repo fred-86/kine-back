@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Back;
 
 use App\Entity\Back\Availability;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

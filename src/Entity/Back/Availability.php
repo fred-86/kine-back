@@ -70,6 +70,26 @@ class Availability
      */
     private $pratictioner;
 
+    /**
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    private $backgroundColor;
+
+    /**
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    private $textColor;
+
+    /**
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    private $borderColor;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $allDay;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -196,6 +216,54 @@ class Availability
     public function setPratictioner(?Pratictioner $pratictioner): self
     {
         $this->pratictioner = $pratictioner;
+
+        return $this;
+    }
+
+    public function getBackgroundColor(): ?string
+    {
+        return $this->backgroundColor;
+    }
+
+    public function setBackgroundColor(?string $backgroundColor): self
+    {
+        $this->backgroundColor = $backgroundColor;
+
+        return $this;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(?string $textColor): self
+    {
+        $this->textColor = $textColor;
+
+        return $this;
+    }
+
+    public function getBorderColor(): ?string
+    {
+        return $this->borderColor;
+    }
+
+    public function setBorderColor(?string $borderColor): self
+    {
+        $this->borderColor = $borderColor;
+
+        return $this;
+    }
+
+    public function isAllDay(): ?bool
+    {
+        return $this->allDay;
+    }
+
+    public function setAllDay(?bool $allDay): self
+    {
+        $this->allDay = $allDay;
 
         return $this;
     }

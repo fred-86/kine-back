@@ -47,6 +47,22 @@
                 <th>UpdatedAt</th>
                 <td>{{ availability.updatedAt ? availability.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>BackgroundColor</th>
+                <td>{{ availability.backgroundColor }}</td>
+            </tr>
+            <tr>
+                <th>TextColor</th>
+                <td>{{ availability.textColor }}</td>
+            </tr>
+            <tr>
+                <th>BorderColor</th>
+                <td>{{ availability.borderColor }}</td>
+            </tr>
+            <tr>
+                <th>AllDay</th>
+                <td>{{ availability.allDay ? 'Yes' : 'No' }}</td>
+            </tr>
         </tbody>
     </table>
 

@@ -3,21 +3,18 @@
 namespace App\Controller\Back;
 
 use App\Entity\Back\Availability;
-use App\Form\Back\AvailabilityType;
-use App\Repository\AvailabilityRepository;
+use App\Form\Back\Availability1Type;
+use App\Repository\Back\AvailabilityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/back/availability")
- */
+#[Route('/back/availability')]
 class AvailabilityController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_back_availability_index", methods={"GET"})
-     */
+    #[Route('/', name: 'app_back_availability_index', methods: ['GET'])]
     public function index(AvailabilityRepository $availabilityRepository): Response
     {
         return $this->render('back/availability/index.html.twig', [
@@ -25,30 +22,27 @@ class AvailabilityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="app_back_availability_new", methods={"GET", "POST"})
-     */
-    public function new(Request $request, AvailabilityRepository $availabilityRepository): Response
+    #[Route('/new', name: 'app_back_availability_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $availability = new Availability();
-        $form = $this->createForm(AvailabilityType::class, $availability);
+        $form = $this->createForm(Availability1Type::class, $availability);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $availabilityRepository->add($availability, true);
+            $entityManager->persist($availability);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_back_availability_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('back/availability/new.html.twig', [
+        return $this->render('back/availability/new.html.twig', [
             'availability' => $availability,
             'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_back_availability_show", methods={"GET"})
-     */
+    #[Route('/{id}', name: 'app_back_availability_show', methods: ['GET'])]
     public function show(Availability $availability): Response
     {
         return $this->render('back/availability/show.html.twig', [
@@ -56,33 +50,30 @@ class AvailabilityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="app_back_availability_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, Availability $availability, AvailabilityRepository $availabilityRepository): Response
+    #[Route('/{id}/edit', name: 'app_back_availability_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Availability $availability, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(AvailabilityType::class, $availability);
+        $form = $this->createForm(Availability1Type::class, $availability);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $availabilityRepository->add($availability, true);
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_back_availability_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('back/availability/edit.html.twig', [
+        return $this->render('back/availability/edit.html.twig', [
             'availability' => $availability,
             'form' => $form,
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_back_availability_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Availability $availability, AvailabilityRepository $availabilityRepository): Response
+    #[Route('/{id}', name: 'app_back_availability_delete', methods: ['POST'])]
+    public function delete(Request $request, Availability $availability, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$availability->getId(), $request->request->get('_token'))) {
-            $availabilityRepository->remove($availability, true);
+            $entityManager->remove($availability);
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_back_availability_index', [], Response::HTTP_SEE_OTHER);
