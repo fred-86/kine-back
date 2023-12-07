@@ -44,7 +44,7 @@ a {
 }
 
 .btn-hamburger,
-.user-toggler {
+.sign-user {
     display: none;
 }
 
@@ -94,6 +94,7 @@ a {
     background:#92c3eeb7;
 }
 
+
 @media (max-width: 900px) {
     .nav-wrapper {
         position: relative;
@@ -110,6 +111,48 @@ a {
     .nav-navlinks {
         order:1;
     }
+    .btn-hamburger {
+        width:20px;
+        height: 20px;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: center;
+        background: #fafafa;
+        position: relative;
+    }
+    .btn-hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #333;
+        position: absolute;
+        pointer-events: none;
+        transition:  opacity 0.3s 0.15s ease-out;
+    }
+
+    .btn-hamburger span:nth-child(1),
+    .btn-hamburger span:nth-child(3) {
+        transition: transform 0.3s ease-out;
+    }
+
+    .btn-hamburger span:nth-child(1) {
+        transform: translateY(7px);
+    }
+    .btn-hamburger span:nth-child(3) {
+        transform: translateY(-7px);
+    }
+
+    .btn-hamburger.open span:nth-child(1) {
+        transform: translate(0) rotate(135deg);
+    }
+    .btn-hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transition:  opacity 0s ease-out;
+    }
+    .btn-hamburger.open span:nth-child(3) {
+        transform: translate(0) rotate(-135deg);
+    }
 
     .navlinks-container {
         display:flex;
@@ -122,17 +165,44 @@ a {
         height: 100vh;
         padding: 15px 50px 15px 20px;
         border-right: 1px solid #c5c5c6;
-        /* transform: translate(-100%); */
+        transform: translate(-100%);
+        transition: transform 0.3s ease-out;
     }
 
     .open {
         transform: translate(0);
     }
+
+    .navlinks-container a {
+        font-size:18px;
+        margin: 10px 0;
+    }
     .nav-login {
         order:3;
+        margin-left: 0;
+    }
+    .sign-btns {
+        display: none;
+    }
+
+    .sign-user {
+        display: block;
+        cursor: pointer;
+        border: none;
+    }
+    .sign-user img {
+        width: 20px;
     }
 }
 
-img {
-    width: 20px;
+@media (max-width: 500px) {
+
+    .nav-icon img {
+        width: 30px;
+    }
+    .nav-icon span {
+        font-size:20px;
+    }
+
 }
+
